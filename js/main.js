@@ -9,7 +9,7 @@ window.onload = function () {
 
     colorRect(0, 0, canvas.width, canvas.heigh, "black");
     colorText("Loading Images", canvas.width / 2, canvas.height / 2);
-    
+
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
 
@@ -32,10 +32,16 @@ function keyReleased(evt) {
 }
 
 function keyAction(evt, newVal) {
+    var player = activeObjects[0];
+    index = player.keysHeld.indexOf(evt.keyCode);
 
+    if (newVal && index < 0) {
+        player.keysHeld.push(evt.keyCode);
+    }
+    else {
+        player.keysHeld.splice(index, 1);
+    }
 }
-
-
 
 function loadAssets() {
     var assets = [
@@ -53,14 +59,17 @@ function loadAssets() {
 }
 
 function loadWorld() {
-    colorRect(0, 0, canvas.width, canvas.heigh, "black");
-
+    colorRect(0, 0, canvas.width, canvas.height, "white");
+}
+function drawWorld() {
+    colorRect(0, 0, canvas.width, canvas.height, "white");
 }
 
 function loadCharacters() {
     var player = new Player("One", activeAssets[0]);
 
     activeObjects.push(player);
+    console.log(activeObjects);
 }
 function startGame() {
     var framesPerSecond = 30;
@@ -73,6 +82,7 @@ function startGame() {
 }
 
 function gameLoop() {
+    drawWorld();
     for (i in activeObjects) {
         activeObjects[i].draw();
     }
