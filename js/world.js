@@ -49,10 +49,11 @@ function World(world) {
         for (var Col = 0; Col < self.town.cols; Col++) { // in  column...
             for (var Row = 0; Row < self.town.rows; Row++) { // in  row within that col      
                 //if (isBrickAtTileCoord(Col, Row)) {
+                    var itemAtLoc = self.town.grid[Row * Col];
                 var brickLeftEdgeX = Col * tileset.TileWidth;
                 var brickTopEdgeY = Row * tileset.TileHeight;
                 var spriteX =  0;
-                var spriteY = 40;
+                var spriteY = tileset.TileHeight * itemAtLoc;
 
                 drawSpritemap(tile, brickLeftEdgeX, brickTopEdgeY, spriteX, spriteY, tileset.TileWidth, tileset.TileHeight);
                 // colorRect(brickLeftEdgeX, brickTopEdgeY,
