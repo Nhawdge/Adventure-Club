@@ -21,10 +21,17 @@ function drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng) {
     canvasContext.rotate(withAng);
     canvasContext.drawImage(useBitmap, -useBitmap.width / 2, -useBitmap.height / 2);
     canvasContext.restore();
-
 }
 
-function clearScreen(){
+function drawSpritemap(useBitmap, atX, atY, spriteX, spriteY, spriteWidth, spriteHeight) {
+    canvasContext.save();
+    canvasContext.translate(atX, atY);
+    //canvasContext.rotate(withAng);
+    canvasContext.drawImage(useBitmap,  spriteX, spriteY, spriteWidth, spriteHeight, -useBitmap.width / 2, -useBitmap.height / 2, spriteWidth,spriteHeight);
+    canvasContext.restore();
+}
+
+function clearScreen() {
     colorRect(0, 0, canvas.width, canvas.height, 'black');
-    
+
 }

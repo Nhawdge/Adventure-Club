@@ -16,6 +16,7 @@ window.onload = function () {
     loadAssets();
     loadWorld();
     loadCharacters();
+    
     // Run game
 
     startGame();
@@ -32,7 +33,7 @@ function keyReleased(evt) {
 }
 
 function keyAction(evt, newVal) {
-    var player = activeObjects[0];
+    var player = activeObjects[1];
     index = player.keysHeld.indexOf(evt.keyCode);
 
     if (newVal && index < 0) {
@@ -47,6 +48,7 @@ function loadAssets() {
     var assets = [
         "characters/character.png",
         "characters/cat.png",
+        "backgrounds/towntileset.png",
     ]
 
     for (i in assets) {
@@ -59,8 +61,10 @@ function loadAssets() {
 }
 
 function loadWorld() {
-    colorRect(0, 0, canvas.width, canvas.height, "white");
+    var world = new World("Town");
+    activeObjects.push(world);
 }
+
 function drawWorld() {
     colorRect(0, 0, canvas.width, canvas.height, "white");
 }
