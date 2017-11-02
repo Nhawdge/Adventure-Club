@@ -26,8 +26,9 @@ function drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng) {
 function drawSpritemap(useBitmap, atX, atY, spriteX, spriteY, spriteWidth, spriteHeight) {
     canvasContext.save();
     canvasContext.translate(atX, atY);
-    //canvasContext.rotate(withAng);
-    canvasContext.drawImage(useBitmap,  spriteX, spriteY, spriteWidth, spriteHeight, -useBitmap.width / 2, -useBitmap.height / 2, spriteWidth,spriteHeight);
+    //canvasContext.rotate(withAng); 
+    canvasContext.drawImage(useBitmap, spriteX, spriteY, spriteWidth, spriteHeight, 
+                            0, 0, spriteWidth, spriteHeight);
     canvasContext.restore();
 }
 
