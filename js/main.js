@@ -2,6 +2,14 @@ var canvas;
 var canvasContext;
 var activeObjects = [];
 var activeAssets = [];
+var camPanX = 0;
+var camPanY = 0;
+
+var sliderX = 0;
+var sliderY = 0;
+
+const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X  = 150;
+const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y  = 100;
 
 window.onload = function () {
     canvas = document.getElementById("gameCanvas")
@@ -16,7 +24,7 @@ window.onload = function () {
     loadAssets();
     loadWorld();
     loadCharacters();
-    
+
     // Run game
 
     startGame();
@@ -26,10 +34,12 @@ window.onload = function () {
 function keyPressed(evt) {
     //console.log(evt)
     keyAction(evt, true);
+    //evt.preventDefault();
 }
 
 function keyReleased(evt) {
     keyAction(evt, false);
+    //evt.preventDefault();
 }
 
 function keyAction(evt, newVal) {
@@ -86,8 +96,9 @@ function startGame() {
 }
 
 function gameLoop() {
-    drawWorld();
+    //drawWorld();
     for (i in activeObjects) {
         activeObjects[i].draw();
     }
+    cameraFollow();
 }

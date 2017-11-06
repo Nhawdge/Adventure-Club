@@ -6,7 +6,7 @@ function Player(name) {
     self.sprite = activeAssets.find(function(elem) { return elem.id == self.spriteSelected})
     
     self.skills = playerSkills();
-    self.attributes = { speed: 1};
+    self.attributes = { speed: 5};
 
     // Using WASD
     self.controls = { Left: 65, Up: 87, Right: 68, Down: 83, };
