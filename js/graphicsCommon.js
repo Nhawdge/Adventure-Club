@@ -10,9 +10,9 @@ function colorCircle(centerX, centerY, radius, fillColor) {
     canvasContext.fill();
 }
 
-function colorText(showWords, textX, textY, fillColor) {
+function colorText(words, textX, textY, fillColor) {
     canvasContext.fillStyle = fillColor;
-    canvasContext.fillText(showWords, textX, textY)
+    canvasContext.fillText(words, textX, textY)
 }
 
 function drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng) {
@@ -33,7 +33,6 @@ function drawSpritemap(useBitmap, atX, atY, spriteX, spriteY, spriteWidth, sprit
 }
 
 function clearScreen() {
-    colorRect(0, 0, canvas.width, canvas.height, 'black');
-
+    colorRect(0, 0, canvas.width, canvas.height, 'white');
 }
 

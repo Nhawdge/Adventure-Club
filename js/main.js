@@ -27,6 +27,8 @@ window.onload = function () {
 
     // Run game
 
+    loadMenu();
+
     startGame();
 }
 
