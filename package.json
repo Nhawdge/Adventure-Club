@@ -1,0 +1,24 @@
+{
+  "name": "adventure-club",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start http://127.0.0.1:8080/ &http-server ",
+    "build": "echo \"TODO\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nhawdge/adventure-club.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nhawdge/adventure-club/issues"
+  },
+  "homepage": "https://github.com/Nhawdge/adventure-club#readme",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}
