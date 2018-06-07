@@ -46,7 +46,7 @@ function keyReleased(evt) {
 
 function keyAction(evt, newVal) {
     var player = activeObjects[1];
-    index = player.keysHeld.indexOf(evt.keyCode);
+    var index = player.keysHeld.indexOf(evt.keyCode);
 
     if (newVal && index < 0) {
         player.keysHeld.push(evt.keyCode);

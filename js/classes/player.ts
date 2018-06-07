@@ -12,15 +12,38 @@ class Player implements IFighting, IMovement {
     Equipment: Equipment;
 
     Position:{};
+    keysHeld : Array<number>;
+    controls: object;
 
     constructor() {
         this.Position = { x: 0, y: 0 };
-    }
+        this.keysHeld = [];
+        this.controls = { Left: 65, Up: 87, Right: 68, Down: 83, };
+    };
+
     Attack() {
         return 1;
-    }
+    };
     Draw() {
+        this.Move();
+        drawBitmapCenteredWithRotation(self.sprite, this.Position.x,  this.Position.y, 0);
         return
+    };
+
+    Move() {
+        //console.log("moving", self.keysHeld);
+        if (self.keysHeld.includes(self.controls.Left)){
+            self.position.x -= self.attributes.speed;
+        }
+        if (self.keysHeld.includes(self.controls.Right)){
+            self.position.x += self.attributes.speed;
+        }
+        if (self.keysHeld.includes(self.controls.Down)){
+            self.position.y += self.attributes.speed;
+        }
+        if (self.keysHeld.includes(self.controls.Up)){
+            self.position.y -= self.attributes.speed;
+        }
     }
 
 }

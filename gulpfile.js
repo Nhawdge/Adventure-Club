@@ -32,3 +32,6 @@ gulp.task('ts', function () {
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("assets/bundles"));
 });
+gulp.task('watch', function() {
+  gulp.watch('js/**/*.*s', ['ts'])
+})

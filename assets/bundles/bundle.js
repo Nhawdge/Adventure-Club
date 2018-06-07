@@ -129,7 +129,7 @@ function keyReleased(evt) {
 
 function keyAction(evt, newVal) {
     var player = activeObjects[1];
-    index = player.keysHeld.indexOf(evt.keyCode);
+    var index = player.keysHeld.indexOf(evt.keyCode);
 
     if (newVal && index < 0) {
         player.keysHeld.push(evt.keyCode);
@@ -388,14 +388,35 @@ var Feet = /** @class */function (_super) {
 exports.__esModule = true;
 var Player = /** @class */function () {
     function Player() {
-        this.Position.x = 0;
-        this.Position.y = 0;
+        this.Position = { x: 0, y: 0 };
+        this.keysHeld = [];
+        this.controls = { Left: 65, Up: 87, Right: 68, Down: 83 };
     }
+    ;
     Player.prototype.Attack = function () {
         return 1;
     };
+    ;
     Player.prototype.Draw = function () {
+        this.Move();
+        drawBitmapCenteredWithRotation(self.sprite, this.Position.x, this.Position.y, 0);
         return;
+    };
+    ;
+    Player.prototype.Move = function () {
+        //console.log("moving", self.keysHeld);
+        if (self.keysHeld.includes(self.controls.Left)) {
+            self.position.x -= self.attributes.speed;
+        }
+        if (self.keysHeld.includes(self.controls.Right)) {
+            self.position.x += self.attributes.speed;
+        }
+        if (self.keysHeld.includes(self.controls.Down)) {
+            self.position.y += self.attributes.speed;
+        }
+        if (self.keysHeld.includes(self.controls.Up)) {
+            self.position.y -= self.attributes.speed;
+        }
     };
     return Player;
 }();
