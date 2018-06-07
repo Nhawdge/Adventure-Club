@@ -1,4 +1,4 @@
-function Player(name) {
+function oldPlayer(name) {
     self = this;
 
     self.name = name;

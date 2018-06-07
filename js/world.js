@@ -43,12 +43,12 @@ function World(world) {
         ]
     };
 
-    self.draw = function () {
+    self.Draw = function () {
         var tile = self.tilesets.Town.Tiles;
         var tileset = self.tilesets.Town;
 
-        for (row in self.town.grid) {
-            for (col in self.town.grid[row]) {
+        for (let row in self.town.grid) {
+            for (let col in self.town.grid[row]) {
                 var itemAtLoc = self.town.grid[row][col];
                 var brickLeftEdgeX = col * tileset.TileWidth;
                 var brickTopEdgeY = row * tileset.TileHeight;

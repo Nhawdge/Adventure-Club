@@ -63,7 +63,7 @@ function loadAssets() {
         "backgrounds/towntileset.png",
     ]
 
-    for (i in assets) {
+    for (let i in assets) {
         var assetElem = document.createElement("img");
         assetElem.src = "assets/sprites/" + assets[i];
         assetElem.id = assets[i].split("/")[1].split(".")[0];
@@ -85,11 +85,10 @@ function loadCharacters() {
     var player = new Player("One", activeAssets[0]);
 
     activeObjects.push(player);
-    console.log(activeObjects);
 }
 function startGame() {
     var framesPerSecond = 30;
-    gameloopId = setInterval(gameLoop, 1000 / framesPerSecond);
+    var gameloopId = setInterval(gameLoop, 1000 / framesPerSecond);
 
     //setTimeout(function () {
     //        clearInterval(gameloopId);
@@ -99,8 +98,8 @@ function startGame() {
 
 function gameLoop() {
     //drawWorld();
-    for (i in activeObjects) {
-        activeObjects[i].draw();
+    for (let i in activeObjects) {
+        activeObjects[i].Draw();
     }
     cameraFollow();
 }

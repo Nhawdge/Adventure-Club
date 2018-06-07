@@ -14,7 +14,7 @@ function loadMenu() {
     ];
 
 
-    for (i in menuOptions) {
+    for (var i in menuOptions) {
         colorRect(canvas.width / 2, canvas.height / 2 + (i * 60), 80, 40, "black");
         colorRect(canvas.width / 2 + 2, canvas.height / 2 + 2 + (i * 60), 76, 36, "white");
 

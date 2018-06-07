@@ -11,11 +11,16 @@ class Player implements IFighting, IMovement {
     Abilities: Array<Ability>;
     Equipment: Equipment;
 
-    constructor() {
+    Position:{};
 
+    constructor() {
+        this.Position = { x: 0, y: 0 };
     }
     Attack() {
         return 1;
+    }
+    Draw() {
+        return
     }
 
 }
@@ -26,7 +31,7 @@ class Skill {
     name: string;
     difficulty: number;
 
-    constructor(name, difficulty) {
+    constructor(name: string, difficulty: number) {
         this.name = name;
         this.difficulty = difficulty;
     }

@@ -3,18 +3,18 @@ function cameraFollow() {
     var cameraFocusCenterX = camPanX + canvas.width / 2;
     var cameraFocusCenterY = camPanY + canvas.height / 2;
 
-    var playerDistFromCameraFocusX = Math.abs(activeObjects[1].position.x - cameraFocusCenterX);
-    var playerDistFromCameraFocusY = Math.abs(activeObjects[1].position.y - cameraFocusCenterY);
+    var playerDistFromCameraFocusX = Math.abs(activeObjects[1].Position.x - cameraFocusCenterX);
+    var playerDistFromCameraFocusY = Math.abs(activeObjects[1].Position.y - cameraFocusCenterY);
 
     if (playerDistFromCameraFocusX > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X) {
-      if (cameraFocusCenterX < activeObjects[1].position.x) {
+      if (cameraFocusCenterX < activeObjects[1].Position.x) {
         camPanX += 5;
       } else {
         camPanX -= 5;
       }
     }
     if (playerDistFromCameraFocusY > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y) {
-      if (cameraFocusCenterY < activeObjects[1].position.y) {
+      if (cameraFocusCenterY < activeObjects[1].Position.y) {
         camPanY += 5;
       } else {
         camPanY -= 5;

@@ -1,20 +1,21 @@
+"use strict";
 
 function cameraFollow() {
   var cameraFocusCenterX = camPanX + canvas.width / 2;
   var cameraFocusCenterY = camPanY + canvas.height / 2;
 
-  var playerDistFromCameraFocusX = Math.abs(activeObjects[1].position.x - cameraFocusCenterX);
-  var playerDistFromCameraFocusY = Math.abs(activeObjects[1].position.y - cameraFocusCenterY);
+  var playerDistFromCameraFocusX = Math.abs(activeObjects[1].Position.x - cameraFocusCenterX);
+  var playerDistFromCameraFocusY = Math.abs(activeObjects[1].Position.y - cameraFocusCenterY);
 
   if (playerDistFromCameraFocusX > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X) {
-    if (cameraFocusCenterX < activeObjects[1].position.x) {
+    if (cameraFocusCenterX < activeObjects[1].Position.x) {
       camPanX += 5;
     } else {
       camPanX -= 5;
     }
   }
   if (playerDistFromCameraFocusY > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y) {
-    if (cameraFocusCenterY < activeObjects[1].position.y) {
+    if (cameraFocusCenterY < activeObjects[1].Position.y) {
       camPanY += 5;
     } else {
       camPanY -= 5;
@@ -41,6 +42,8 @@ function cameraFollow() {
   //   camPanY = maxPanTop;
   // }
 }
+'use strict';
+
 function colorRect(topleftX, topleftY, boxWidth, boxHeight, fillColor) {
     canvasContext.fillStyle = fillColor;
     canvasContext.fillRect(topleftX, topleftY, boxWidth, boxHeight);
@@ -77,6 +80,8 @@ function drawSpritemap(useBitmap, atX, atY, spriteX, spriteY, spriteWidth, sprit
 function clearScreen() {
     colorRect(0, 0, canvas.width, canvas.height, 'white');
 }
+"use strict";
+
 var canvas;
 var canvasContext;
 var activeObjects = [];
@@ -87,8 +92,8 @@ var camPanY = 0;
 var sliderX = 0;
 var sliderY = 0;
 
-const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
-const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
+var PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
+var PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
 
 window.onload = function () {
     canvas = document.getElementById("gameCanvas");
@@ -136,7 +141,7 @@ function keyAction(evt, newVal) {
 function loadAssets() {
     var assets = ["characters/character.png", "characters/cat.png", "backgrounds/towntileset.png"];
 
-    for (i in assets) {
+    for (var i in assets) {
         var assetElem = document.createElement("img");
         assetElem.src = "assets/sprites/" + assets[i];
         assetElem.id = assets[i].split("/")[1].split(".")[0];
@@ -158,11 +163,10 @@ function loadCharacters() {
     var player = new Player("One", activeAssets[0]);
 
     activeObjects.push(player);
-    console.log(activeObjects);
 }
 function startGame() {
     var framesPerSecond = 30;
-    gameloopId = setInterval(gameLoop, 1000 / framesPerSecond);
+    var gameloopId = setInterval(gameLoop, 1000 / framesPerSecond);
 
     //setTimeout(function () {
     //        clearInterval(gameloopId);
@@ -171,11 +175,13 @@ function startGame() {
 
 function gameLoop() {
     //drawWorld();
-    for (i in activeObjects) {
-        activeObjects[i].draw();
+    for (var i in activeObjects) {
+        activeObjects[i].Draw();
     }
     cameraFollow();
 }
+"use strict";
+
 // Menu Bar
 
 function loadMenu() {
@@ -189,14 +195,16 @@ function loadMenu() {
 
     var menuOptions = [{ title: "Start Game" }, { title: "About Game" }];
 
-    for (i in menuOptions) {
+    for (var i in menuOptions) {
         colorRect(canvas.width / 2, canvas.height / 2 + i * 60, 80, 40, "black");
         colorRect(canvas.width / 2 + 2, canvas.height / 2 + 2 + i * 60, 76, 36, "white");
 
         colorText(menuOptions[i].title, canvas.width / 2 + 10, canvas.height / 2 + 20 + i * 60, "black");
     }
 }
-function Player(name) {
+'use strict';
+
+function oldPlayer(name) {
     self = this;
 
     self.name = name;
@@ -260,6 +268,7 @@ function playerSkills() {
         Blocking: new Skill({ id: 3, name: 'Blocking', difficulty: 1 })
     };
 }
+"use strict";
 
 function World(world) {
     var self = this;
@@ -293,12 +302,12 @@ function World(world) {
         grid: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
     };
 
-    self.draw = function () {
+    self.Draw = function () {
         var tile = self.tilesets.Town.Tiles;
         var tileset = self.tilesets.Town;
 
-        for (row in self.town.grid) {
-            for (col in self.town.grid[row]) {
+        for (var row in self.town.grid) {
+            for (var col in self.town.grid[row]) {
                 var itemAtLoc = self.town.grid[row][col];
                 var brickLeftEdgeX = col * tileset.TileWidth;
                 var brickTopEdgeY = row * tileset.TileHeight;
@@ -311,4 +320,103 @@ function World(world) {
         return;
     };
 }
+"use strict";
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+exports.__esModule = true;
+var Equipment = /** @class */function () {
+    function Equipment() {}
+    return Equipment;
+}();
+exports.Equipment = Equipment;
+var Armor = /** @class */function () {
+    function Armor() {}
+    return Armor;
+}();
+var Helmet = /** @class */function (_super) {
+    __extends(Helmet, _super);
+    function Helmet() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Helmet;
+}(Armor);
+var Shoulder = /** @class */function (_super) {
+    __extends(Shoulder, _super);
+    function Shoulder() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Shoulder;
+}(Armor);
+var Chest = /** @class */function (_super) {
+    __extends(Chest, _super);
+    function Chest() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Chest;
+}(Armor);
+var Legs = /** @class */function (_super) {
+    __extends(Legs, _super);
+    function Legs() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Legs;
+}(Armor);
+var Feet = /** @class */function (_super) {
+    __extends(Feet, _super);
+    function Feet() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Feet;
+}(Armor);
+"use strict";
+
+exports.__esModule = true;
+var Player = /** @class */function () {
+    function Player() {
+        this.Position.x = 0;
+        this.Position.y = 0;
+    }
+    Player.prototype.Attack = function () {
+        return 1;
+    };
+    Player.prototype.Draw = function () {
+        return;
+    };
+    return Player;
+}();
+exports.Player = Player;
+var Skill = /** @class */function () {
+    function Skill(name, difficulty) {
+        this.name = name;
+        this.difficulty = difficulty;
+    }
+    return Skill;
+}();
+exports.Skill = Skill;
+var Ability = /** @class */function () {
+    function Ability(AbilityData, Skills) {}
+    return Ability;
+}();
+exports.Ability = Ability;
+"use strict";
+
+exports.__esModule = true;
+"use strict";
+
+exports.__esModule = true;
 //# sourceMappingURL=bundle.js.map
